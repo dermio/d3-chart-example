@@ -1,3 +1,5 @@
+/***** Code for D3.js v4.0 *****/
+
 let stressors = {
 	"stress": "too much work at job",
 	"activity": "meditate",
@@ -6,6 +8,10 @@ let stressors = {
 	"postHeartRate": 70
 };
 
+/* The Array data used by D3 has been previously requested
+elsewhere in the code. I put the values in an Array so D3 can
+manipulate the data to create the chart. Note: D3 often uses
+a requested data file such as CSV, TSV, JSON, etc... */
 let stressArr = [
   {activity: "preHeartRate", heartRate: 80},
   {activity: "postHeartRate", heartRate: 70}
@@ -25,10 +31,10 @@ let xScale = d3.scaleBand()
               //.domain(["pre-HR", "post-HR"])
               .domain(stressArr.map(d => d.activity))
               .range([0, width])
-              .padding(0.1); // padding between the discreet bands
+              .padding(.2); // padding between the discreet bands
 
 let greaterHR = stressArr.map(d => d.heartRate); console.log(greaterHR);
-let scaledGreaterHR = d3.max(greaterHR) * 1.1; console.log(scaledGreaterHR);
+let scaledGreaterHR = d3.max(greaterHR) * 1.2; console.log(scaledGreaterHR);
 let yScale = d3.scaleLinear()
               //.domain([0, 100])
               .domain([0, scaledGreaterHR])
@@ -55,3 +61,13 @@ g.append("g")
 g.append("g")
 	.call(d3.axisLeft(yScale))
 	.attr("class", "y-scale-group");;
+
+/* Append the rectangles for the bar chart */
+g.selectAll(".bar")
+    .data(stressArr)
+  .enter().append("rect")
+    .attr("class", "bar")
+    .attr("x", d => xScale(d.activity))
+    .attr("width", xScale.bandwidth())
+    .attr("y", d => yScale(d.heartRate))
+    .attr("height", d => height - yScale(d.heartRate))
