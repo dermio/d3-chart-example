@@ -6,6 +6,11 @@ let stressors = {
 	"postHeartRate": 70
 };
 
+let stressArr = [
+  {activity: "preHeartRate", heartRate: 80},
+  {activity: "postHeartRate", heartRate: 70}
+];
+
 /***************************/
 
 // The chart will be 600 wide, 400 high
@@ -17,12 +22,16 @@ let height = 400 - margin.top - margin.bottom;
 
 // Set the scale, domain and range
 let xScale = d3.scaleBand()
-              .domain(["pre-HR", "post-HR"])
+              //.domain(["pre-HR", "post-HR"])
+              .domain(stressArr.map(d => d.activity))
               .range([0, width])
               .padding(0.1); // padding between the discreet bands
 
+let greaterHR = stressArr.map(d => d.heartRate); console.log(greaterHR);
+let scaledGreaterHR = d3.max(greaterHR) * 1.1; console.log(scaledGreaterHR);
 let yScale = d3.scaleLinear()
-              .domain([0, 100])
+              //.domain([0, 100])
+              .domain([0, scaledGreaterHR])
               .range([height, 0]);
 
 /* Select the svg element for the chart, and set the width and height.
