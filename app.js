@@ -26,7 +26,7 @@ let margin = {top: 30, right: 30, bottom: 40, left: 50};
 let width = 600 - margin.left - margin.right;
 let height = 400 - margin.top - margin.bottom;
 
-// Set the scale, domain and range
+// Set the scale, domain, and range
 let xScale = d3.scaleBand()
               //.domain(["pre-HR", "post-HR"])
               .domain(stressArr.map(d => d.typeHR))
@@ -62,7 +62,7 @@ g.append("g")
 	.call(d3.axisLeft(yScale))
 	.attr("class", "y-scale-group");;
 
-/* Append the rectangles for the bar chart */
+// Append the rectangles for the bar chart
 g.selectAll(".bar")
     .data(stressArr)
   .enter().append("rect")
