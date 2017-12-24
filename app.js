@@ -60,7 +60,7 @@ g.append("g")
 
 g.append("g")
 	.call(d3.axisLeft(yScale))
-	.attr("class", "y-scale-group");;
+	.attr("class", "y-scale-group");
 
 // Append the rectangles for the bar chart
 g.selectAll(".bar")
@@ -70,4 +70,4 @@ g.selectAll(".bar")
     .attr("x", d => xScale(d.typeHR))
     .attr("width", xScale.bandwidth())
     .attr("y", d => yScale(d.heartRate))
-    .attr("height", d => height - yScale(d.heartRate))
+    .attr("height", d => height - yScale(d.heartRate));
