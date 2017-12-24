@@ -72,9 +72,18 @@ g.selectAll(".bar")
     .attr("y", d => yScale(d.heartRate))
     .attr("height", d => height - yScale(d.heartRate));
 
-// Add text label for the x and y Axis.
+// Add label for x axis
 g.append("text")
   .attr("transform",
         `translate(${width / 2}, ${height + margin.top + 10})`)
   .style("text-anchor", "middle")
-  .text("beats per minute")
+  .text("heart rates before and after relaxation activity");
+
+// Add label for y axis
+g.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0 - margin.left)
+  .attr("x", 0 - height / 2)
+  .attr("dy", "1em")
+  .style("text-anchor", "middle")
+  .text("beats per minute");
