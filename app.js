@@ -13,8 +13,8 @@ elsewhere in the code. I put the values in an Array so D3 can
 manipulate the data to create the chart. Note: D3 often uses
 a requested data file such as CSV, TSV, JSON, etc... */
 let stressArr = [
-  {activity: "preHeartRate", heartRate: 80},
-  {activity: "postHeartRate", heartRate: 70}
+  {typeHR: "preHeartRate", heartRate: 80},
+  {typeHR: "postHeartRate", heartRate: 70}
 ];
 
 /***************************/
@@ -29,7 +29,7 @@ let height = 400 - margin.top - margin.bottom;
 // Set the scale, domain and range
 let xScale = d3.scaleBand()
               //.domain(["pre-HR", "post-HR"])
-              .domain(stressArr.map(d => d.activity))
+              .domain(stressArr.map(d => d.typeHR))
               .range([0, width])
               .padding(.2); // padding between the discreet bands
 
@@ -48,7 +48,7 @@ let svg = d3.select("svg")
 
 // Append a group element to the svg element
 let g = svg.append("g")
-					.attr("transform", `translate(${margin.left}, ${margin.top})`)
+          .attr("transform", `translate(${margin.left}, ${margin.top})`)
           .attr("class", "parent-group");
 
 /* Append two groups to the outer group element.
@@ -67,7 +67,7 @@ g.selectAll(".bar")
     .data(stressArr)
   .enter().append("rect")
     .attr("class", "bar")
-    .attr("x", d => xScale(d.activity))
+    .attr("x", d => xScale(d.typeHR))
     .attr("width", xScale.bandwidth())
     .attr("y", d => yScale(d.heartRate))
     .attr("height", d => height - yScale(d.heartRate))
