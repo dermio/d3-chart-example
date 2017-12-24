@@ -71,3 +71,10 @@ g.selectAll(".bar")
     .attr("width", xScale.bandwidth())
     .attr("y", d => yScale(d.heartRate))
     .attr("height", d => height - yScale(d.heartRate));
+
+// Add text label for the x and y Axis.
+g.append("text")
+  .attr("transform",
+        `translate(${width / 2}, ${height + margin.top + 10})`)
+  .style("text-anchor", "middle")
+  .text("beats per minute")
