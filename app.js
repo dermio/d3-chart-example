@@ -1,11 +1,11 @@
 /***** Code for D3.js v4.0 *****/
 
 let stressors = {
-	"stress": "too much work at job",
-	"activity": "meditate",
-	"duration": 5,
-	"preHeartRate": 80,
-	"postHeartRate": 70
+  "stress": "too much work at job",
+  "activity": "meditate",
+  "duration": 5,
+  "preHeartRate": 80,
+  "postHeartRate": 70
 };
 
 /* The Array data used by D3 has been previously requested
