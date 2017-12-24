@@ -5,3 +5,11 @@ svg.chart {
 g.parent-group {
   border: 1px solid black;
 }
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
