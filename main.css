@@ -19,3 +19,7 @@ g.parent-group {
 .bar:hover {
   fill: brown;
 }
+
+g, text {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', sans-serif
+}
