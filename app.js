@@ -42,28 +42,30 @@ let yScale = d3.scaleLinear()
 
 /* Select the svg element for the chart, and set the width and height.
 Optionally append the svg element to a pre-existing element */
-let svg = d3.select("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom);
+let chart = d3.select(".container")
+            .append("svg")
+              .attr("class", "chart")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom);
 
 // Append a group element to the svg element
-let g = svg.append("g")
+let parentG = chart.append("g")
           .attr("transform", `translate(${margin.left}, ${margin.top})`)
           .attr("class", "parent-group");
 
 /* Append two groups to the outer group element.
 Add the x-Axis to the first group, and the y-Axis to the second group. */
-g.append("g")
+parentG.append("g")
 	.attr("transform", `translate(0, ${height})`)
 	.call(d3.axisBottom(xScale))
-	.attr("class", "x-scale-group");
+  .attr("class", "x-scale-group");
 
-g.append("g")
+parentG.append("g")
 	.call(d3.axisLeft(yScale))
 	.attr("class", "y-scale-group");
 
 // Append the rectangles for the bar chart
-g.selectAll(".bar")
+parentG.selectAll(".bar")
     .data(stressArr)
   .enter().append("rect")
     .attr("class", "bar")
@@ -73,14 +75,14 @@ g.selectAll(".bar")
     .attr("height", d => height - yScale(d.heartRate));
 
 // Add label for x axis
-g.append("text")
+parentG.append("text")
   .attr("transform",
         `translate(${width / 2}, ${height + margin.top + 10})`)
   .style("text-anchor", "middle")
   .text("heart rates before and after relaxation activity");
 
 // Add label for y axis
-g.append("text")
+parentG.append("text")
   .attr("transform", "rotate(-90)")
   .attr("y", 0 - margin.left)
   .attr("x", 0 - height / 2)
