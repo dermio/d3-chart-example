@@ -22,7 +22,7 @@ let stressArr = [
 // The chart will be 600 wide, 400 high
 
 // The dimensions and margins of the chart
-let margin = {top: 30, right: 30, bottom: 40, left: 50};
+let margin = {top: 30, right: 30, bottom: 60, left: 60};
 let width = 600 - margin.left - margin.right;
 let height = 400 - margin.top - margin.bottom;
 
@@ -58,11 +58,11 @@ Add the x-Axis to the first group, and the y-Axis to the second group. */
 parentG.append("g")
 	.attr("transform", `translate(0, ${height})`)
 	.call(d3.axisBottom(xScale))
-  .attr("class", "x-scale-group");
+  .attr("class", "x-axis");
 
 parentG.append("g")
 	.call(d3.axisLeft(yScale))
-	.attr("class", "y-scale-group");
+	.attr("class", "y-axis");
 
 // Append the rectangles for the bar chart
 parentG.selectAll(".bar")
